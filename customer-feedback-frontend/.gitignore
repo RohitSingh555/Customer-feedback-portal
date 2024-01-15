@@ -1,0 +1,42 @@
+# Node.js
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+
+# Java
+*.class
+*.jar
+
+# IDE/Editor
+.vscode/
+.idea/
+.project
+.classpath
+*.iml
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Build/Dependency Files
+build/
+dist/
+*.log
+*.bak
+
+# Environment Configuration
+.env
+
+# Logs
+*.log
+*.log.*
+
+# Package Manager Files
+yarn.lock
+package-lock.json
+
+# Compiled Files
+*.min.js
+*.min.css
