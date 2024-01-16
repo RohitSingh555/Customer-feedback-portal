@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const ProductList = () => {
-  const [products, setProducts] = useState([]); // Initialize as an empty array
+  const [products, setProducts] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -61,6 +61,8 @@ const ProductList = () => {
       const updatedProducts = await response.json();
       setProducts(updatedProducts);
       setShowModal(false);
+
+      window.location.reload();
     } catch (error) {
       console.error('Error adding product:', error);
     }
@@ -76,14 +78,24 @@ const ProductList = () => {
 
   return (
     <div className="container mt-5">
-        {isAdmin && (
-          <>
-      <div className="d-flex justify-content-between mb-3">
-          <h1>Product List</h1>
-          <button className="btn btn-success" onClick={openModal}>
-            Add Product
-          </button>
+      <div className="hero-section text-center text-white">
+        <div className="bg-overlay"></div>
+        <div className="container py-5">
+          <h1 className="display-4 fw-bold">This is Brandish</h1>
+          <p className="lead">In partnership with your favourite shoe brands.</p>
+          <a href="/" className="btn btn-primary btn-lg">
+            Get Started
+          </a>
         </div>
+      </div>
+      {isAdmin && (
+        <>
+          <div className="d-flex justify-content-between mb-3">
+            <h1>Product List</h1>
+            <button className="btn btn-success" onClick={openModal}>
+              Add Product
+            </button>
+          </div>
           <div className={`modal ${showModal ? 'show' : ''}`} style={{ display: showModal ? 'block' : 'none' }}>
             <div className="modal-dialog">
               <div className="modal-content">
@@ -141,23 +153,28 @@ const ProductList = () => {
           </div>
         </>
       )}
-      <div className="row">
-        {products.map((product) => (
-          <div key={product._id} className="col-md-4 mb-4">
-            <div className="card">
-              <img src={product.imageUrl} alt={product.name} className="card-img-top" />
-              <div className="card-body">
-                <h5 className="card-title">{product.name}</h5>
-                <Link to={`/product/${product._id}`} className="btn btn-primary">
-                  View Details
-                </Link>
-              </div>
+       <div className="row">
+      {products.map((product) => (
+        <div key={product._id} className="col-md-6 mb-4">
+          <div className="card border-primary h-100">
+            <img
+              src={product.imageUrl}
+              alt={product.name}
+              className="card-img-top img-fluid"
+              style={{ height: '300px', objectFit: 'contain' }}
+            />
+            <div className="card-body text-center">
+              <h5 className="card-title">{product.name}</h5>
+              <Link to={`/product/${product._id}`} className="btn btn-primary btn-sm btn-gradient">
+                View Details
+              </Link>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  );
+  </div>
+);
 };
 
 export default ProductList;

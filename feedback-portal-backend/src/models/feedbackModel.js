@@ -5,7 +5,6 @@ const feedbackSchema = new mongoose.Schema({
   rating: Number,
   feedbackMessage: String,
   product: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
-  // ... other fields ...
   timestamp: {
     type: Date,
     default: Date.now

@@ -34,7 +34,6 @@ mongoose.connect('mongodb://localhost/feedback_portal', {
   })
   .catch(error => console.error('MongoDB connection error:', error));
 
-// Middleware for handling CORS headers globally
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Credentials", "true");
@@ -53,7 +52,6 @@ io.on('connection', (socket) => {
     });
   
     socket.on('newComment', (comment) => {
-      // Process the comment and emit it to all clients
       io.emit('comment', comment);
     });
   });
@@ -67,7 +65,7 @@ app.post('/submitFeedback', async (req, res) => {
         customerName,
         rating,
         feedbackMessage,
-        product: productId, // Use the correct field name 'product'
+        product: productId, 
       });
   
       const savedFeedback = await feedback.save();
@@ -126,7 +124,6 @@ app.get('/products', async (req, res) => {
     }
   });
   
-  // Additional routes...
   
   const PORT = process.env.PORT || 3001;
   server.listen(PORT, () => {
@@ -158,7 +155,6 @@ app.get('/products', async (req, res) => {
     const { commentId } = req.body;
   
     try {
-      // Use commentId to delete the feedback
       await Feedback.findByIdAndDelete(commentId);
   
       res.json({ message: 'Feedback deleted successfully' });
@@ -203,10 +199,8 @@ app.post('/login', async (req, res) => {
       return res.status(401).json({ message: 'Invalid username or password' });
     }
 
-    // Include the 'username' in the JWT payload
     const token = jwt.sign({ username: user.username }, SECRET_KEY, { expiresIn: '1h' });
 
-    // Return both 'token' and 'username' in the response
     res.json({ token, username: user.username });
   } catch (error) {
     console.error('Error logging in:', error);
@@ -214,10 +208,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// Protected route example
 app.get('/profile', (req, res) => {
-  // Middleware to verify JWT token before accessing this route
-  // ...
 
   res.json({ message: 'Profile page. Authorized access!' });
 });

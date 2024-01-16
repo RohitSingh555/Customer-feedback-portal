@@ -19,7 +19,6 @@ function App() {
   const handleLogout = () => {
     setAuthToken(null);
     localStorage.removeItem('authToken');
-    // Additional logout logic if needed
   };
 
   return (
@@ -32,7 +31,8 @@ function App() {
           element={<Login onLogin={handleLogin} onClose={() => window.location.href = '/'} />}
         />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/product/:productId" element={<ProductDetails />} />
+        {/* Pass the authToken to ProductDetails */}
+        <Route path="/product/:productId" element={<ProductDetails authToken={authToken} />} />
       </Routes>
       <Footer />
     </Router>

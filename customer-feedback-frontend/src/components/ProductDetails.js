@@ -34,7 +34,6 @@ const ProductDetails = () => {
 
     newSocket.on('comment', (comment) => {
       setComments((prevComments) => [comment, ...prevComments]);
-      // Scroll to the latest comment
       commentsContainerRef.current.scrollTop = 0;
     });
 
@@ -142,13 +141,10 @@ const ProductDetails = () => {
   };
 
   const handleDelete = (commentId) => {
-    // Find the feedback to delete
     const feedback = comments.find((comment) => comment._id === commentId);
 
-    // Set the feedback details to the state
     setFeedbackToDelete(feedback);
 
-    // Show the delete modal
     setShowDeleteModal(true);
   };
 
@@ -167,15 +163,12 @@ const ProductDetails = () => {
           throw new Error('Failed to delete feedback');
         }
 
-        // Remove the deleted feedback from the state
         setComments((prevComments) =>
           prevComments.filter((comment) => comment._id !== feedbackToDelete._id)
         );
       }
 
-      // Hide the delete modal
       setShowDeleteModal(false);
-      // Reset feedbackToDelete state
       setFeedbackToDelete(null);
     } catch (error) {
       console.error('Error deleting feedback:', error);
@@ -197,7 +190,7 @@ const ProductDetails = () => {
       <img
         src={productDetails.imageUrl}
         alt={productDetails.name}
-        className="img-fluid rounded-start p-3" // Added padding to the image
+        className="img-fluid rounded-start p-3"
         style={{ objectFit: 'cover', maxHeight: '100%' }}
       />
     </div>
@@ -282,53 +275,61 @@ const ProductDetails = () => {
       </form>
 
       <div className="mt-5">
-        <h3>Feedback Comments</h3>
-        {comments.map((comment, index) => (
-          <div key={`${comment._id}-${Date.now()}-${index}`} className="card mb-3">
-            <div className="card-body mycarddetails">
-              <div className="left-section">
-                <p className="card-text">{comment.feedbackMessage}</p>
-                <p className="card-subtitle text-muted">
-                  <span>
-                    <FontAwesomeIcon icon={faUser} className="mr-1" />
-                    &nbsp;Posted by <span className="username">{comment.customerName}</span>
-                  </span>
-                  <span>
-                    {' '}
-                    on{' '}
-                    {comment.timestamp
-                      ? new Date(comment.timestamp).toLocaleString()
-                      : 'N/A'}
-                  </span>
-                </p>
-              </div>
+        <div className='d-flex justify-content-between align-items-center'>
+  <h3>Feedback Comments</h3>
+  <p className="mb-0">
+            <strong>Total Feedbacks:</strong> {comments.length}
+          </p>
+  </div>
+  {comments.map((comment, index) => (
+    <>
+    <div key={`${comment._id}-${Date.now()}-${index}`} className="card mb-3">
+      <div className="card-body mycarddetails d-flex flex-column flex-md-row align-items-md-center">
+        <div className="left-section mb-3 mb-md-0">
+          <p className="card-text">{comment.feedbackMessage}</p>
+          <p className="card-subtitle text-muted">
+            <span>
+              <FontAwesomeIcon icon={faUser} className="mr-1" />
+              &nbsp;Posted by <span className="username">{comment.customerName}</span>
+            </span>
+            <span>
+              {' '}
+              on{' '}
+              {comment.timestamp
+                ? new Date(comment.timestamp).toLocaleString()
+                : 'N/A'}
+            </span>
+          </p>
+        </div>
 
-              <div className="right-section">
-                <div className="star-rating">
-                  {[...Array(comment.rating).keys()].map((star) => (
-                    <FontAwesomeIcon
-                      key={star}
-                      icon={faStar}
-                      className="star-icon active"
-                    />
-                  ))}
-                </div>
-                <p className="rating-text">{comment.rating}/5</p>
-              </div>
-
-              {localStorage.getItem('username') === 'admin' && (
-                <button
-                  type="button"
-                  className="btn btn-danger btn-sm float-end"
-                  onClick={() => handleDelete(comment._id)}
-                >
-                  <FontAwesomeIcon icon={faTrash} />
-                </button>
-              )}
-            </div>
+        <div className="right-section d-flex align-items-center">
+          <div className="star-rating">
+            {[...Array(comment.rating).keys()].map((star) => (
+              <FontAwesomeIcon
+                key={star}
+                icon={faStar}
+                className="star-icon active"
+              />
+            ))}
           </div>
-        ))}
+          <p className="rating-text">{comment.rating}/5</p>
+
+          {localStorage.getItem('username') === 'admin' && (
+            <button
+              type="button"
+              className="btn btn-danger btn-sm ms-md-3"
+              onClick={() => handleDelete(comment._id)}
+            >
+              <FontAwesomeIcon icon={faTrash} />
+            </button>
+          )}
+        </div>
       </div>
+    </div>
+    </>
+  ))}
+</div>
+
 
       {/* Delete Modal */}
       {showDeleteModal && (

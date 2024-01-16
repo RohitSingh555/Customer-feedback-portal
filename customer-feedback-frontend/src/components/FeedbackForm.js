@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import socketIOClient from 'socket.io-client';
 
 const FeedbackForm = ({ productId }) => {
-  const [rating, setRating] = useState(5);  // Initial rating
+  const [rating, setRating] = useState(5);
   const [comment, setComment] = useState('');
-  const socket = socketIOClient('http://localhost:3001');  // Change the URL based on your backend server
+  const socket = socketIOClient('http://localhost:3001'); 
 
   const handleRatingChange = (event) => {
     setRating(event.target.value);
@@ -15,11 +15,8 @@ const FeedbackForm = ({ productId }) => {
   };
 
   const handleSubmit = () => {
-    // Send feedback data to your backend
     const feedbackData = { productId, rating, comment };
     socket.emit('feedback', feedbackData);
-
-    // Clear the form after submission
     setRating(5);
     setComment('');
   };

@@ -12,28 +12,40 @@ code {
     monospace;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: auto;
+}
 
 
-
-/* Assuming star-icon and star-rating classes are styled as per your requirement */
 .star-rating {
   display: flex;
   align-items: center;
 }
 
 .star-icon {
-  color: black; /* Initial color of stars */
+  color: black;
   cursor: pointer;
 }
 .star-rating svg{
-  color: black; /* Initial color of stars */
+  color: black; 
   cursor: pointer;
   width: 40px;
   height: 40px;
 }
 
 .star-icon.active {
-  color: gold; /* Color when star is active/clicked */
+  color: gold; 
 }
 
 .mycarddetails {
@@ -42,7 +54,7 @@ code {
 }
 
 .left-section {
-  flex: 0 0 70%; /* Adjust the width as needed */
+  flex: 0 0 70%;
 }
 
 .right-section {
@@ -51,7 +63,7 @@ code {
     align-items: flex-start;
 }
 .rating-text{
-  padding-top: 8px;
+  padding-top: 15px;
 }
 .right-section .star-rating path{
   width: 12px !important;
