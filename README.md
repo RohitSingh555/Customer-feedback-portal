@@ -1,4 +1,4 @@
-## Project Name: Customer Feedback System
+## Project Name: Live Customer Feedback System
 
 ### Description
 This project consists of a Live customer feedback portal using Socket.io that allows users to provide feedback on various products.
