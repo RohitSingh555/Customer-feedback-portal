@@ -12,7 +12,7 @@ This project consists of a Live customer feedback portal using Socket.io that al
 
 #### Setup Instructions
 1. Clone the repository:
-   git clone https://github.com/your-username/customer-feedback-system.git
+   git clone [https://github.com/your-username/customer-feedback-system.git](https://github.com/RohitSingh555/Customer-feedback-portal.git)
 
 2. Navigate to the frontend directory:
    cd customer-feedback-frontend
