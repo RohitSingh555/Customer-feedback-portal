@@ -54,14 +54,19 @@ This project consists of a Live customer feedback portal using Socket.io that al
 4. Admins can delete feedback.
 
 ### Additional Very Important Notes
-- Make sure MongoDB is running and the connection string is correctly set in the `.env` file.
+- Make sure MongoDB is running.
 - Adjust frontend/backend connection URLs if necessary.
 
 ### To add products signup as admin :
 - just make the username **admin**
-- then login with the account only then will you see the add product form
-- Then just click on view details of the product and you will see product details page
-- ![image](https://github.com/RohitSingh555/Customer-feedback-portal/assets/106096232/7a0fc6dc-7cd3-487d-be9e-8052872ec73e)
+- ![image](https://github.com/RohitSingh555/Customer-feedback-portal/assets/106096232/b9c7b28b-b919-4f5b-8603-2ef3d879b97b)
 
+- then login with the account only then will you see the add product form
+- ![image](https://github.com/RohitSingh555/Customer-feedback-portal/assets/106096232/df5fffd0-2974-437e-8db4-6b4818fba532)
+
+- Then just click on view details of the product and you will see product details page
+![image](https://github.com/RohitSingh555/Customer-feedback-portal/assets/106096232/47c62fab-353a-4849-9771-aa88734d31a1)
 - Here you will find feedback form that you can use to provide feedback on that particular product
+![image](https://github.com/RohitSingh555/Customer-feedback-portal/assets/106096232/941a0038-14d1-4374-b333-7277c8a7900e)
+
 - updates are live because we have used socket.io
